@@ -482,7 +482,7 @@ static void _close_mysql_plink(zend_resource *rsrc)
 static PHP_INI_MH(OnMySQLPort)
 {
 	if (new_value != NULL) { /* default port */
-		MySG(default_port) = atoi(new_value->val);
+		MySG(default_port) = atoi(ZSTR_VAL(new_value));
 	} else {
 		MySG(default_port) = -1;
 	}
@@ -773,7 +773,7 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 		}
 		user = php_get_current_user();
 		hashed_details = zend_string_alloc(sizeof("mysql___") + strlen(user) - 1, 0);
-		snprintf(hashed_details->val, hashed_details->len + 1, "mysql__%s_", user);
+		snprintf(ZSTR_VAL(hashed_details), ZSTR_LEN(hashed_details), "mysql__%s_", user);
 		client_flags = CLIENT_INTERACTIVE;
 	} else {
 		/* mysql_pconnect does not support new_link parameter */
@@ -819,7 +819,7 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 #endif
 		hashed_details = zend_string_alloc(sizeof("mysql____") + (host_and_port? strlen(host_and_port) : 0)
 				+ (user? strlen(user) : 0) + (passwd? strlen(passwd) : 0) + MAX_LENGTH_OF_LONG - 1, 0);
-		hashed_details->len = snprintf(hashed_details->val, hashed_details->len + 1, "mysql_%s_%s_%s_" ZEND_LONG_FMT, SAFE_STRING(host_and_port), SAFE_STRING(user), SAFE_STRING(passwd), client_flags);
+		ZSTR_LEN(hashed_details) = snprintf(ZSTR_VAL(hashed_details), ZSTR_LEN(hashed_details) + 1, "mysql_%s_%s_%s_" ZEND_LONG_FMT, SAFE_STRING(host_and_port), SAFE_STRING(user), SAFE_STRING(passwd), client_flags);
 	}
 
 	/* We cannot use mysql_port anymore in windows, need to use
@@ -918,7 +918,7 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 			ZVAL_NEW_PERSISTENT_RES(&new_le, -1, mysql, le_plink);
 
 			/* avoid bogus memleak report */
-			phashed = zend_string_init(hashed_details->val, hashed_details->len, 1);
+			phashed = zend_string_init(ZSTR_VAL(hashed_details), ZSTR_LEN(hashed_details), 1);
 			if (zend_hash_update(&EG(persistent_list), phashed, &new_le) == NULL) {
 				zend_string_release(phashed);
 				free(mysql);
@@ -1905,7 +1905,7 @@ PHP_FUNCTION(mysql_escape_string)
 	 * be worth it
 	 */
 	escaped_str = zend_string_alloc(str_len * 2, 0);
-	escaped_str->len = mysql_escape_string(escaped_str->val, str, str_len);
+	ZSTR_LEN(escaped_str) = mysql_escape_string(ZSTR_VAL(escaped_str), str, str_len);
 
 	php_error_docref("function.mysql-real-escape-string", E_DEPRECATED, "This function is deprecated; use mysql_real_escape_string() instead.");
 	RETURN_STR(escaped_str);
@@ -1941,7 +1941,7 @@ PHP_FUNCTION(mysql_real_escape_string)
 	 * be worth it
 	 */
 	new_str = zend_string_alloc(str_len * 2, 0);
-	new_str->len = mysql_real_escape_string(mysql->conn, new_str->val, str, str_len);
+	ZSTR_LEN(new_str) = mysql_real_escape_string(mysql->conn, ZSTR_VAL(new_str), str, str_len);
 
 	RETURN_NEW_STR(new_str);
 }
@@ -2146,7 +2146,7 @@ static void php_mysql_fetch_hash(INTERNAL_FUNCTION_PARAMETERS, zend_long result_
 			ce = zend_fetch_class(class_name, ZEND_FETCH_CLASS_AUTO);
 		}
 		if (!ce) {
-			php_error_docref(NULL, E_WARNING, "Could not find class '%s'", class_name->val);
+			php_error_docref(NULL, E_WARNING, "Could not find class '%s'", ZSTR_VAL(class_name));
 			return;
 		}
 		result_type = MYSQL_ASSOC;
@@ -2268,7 +2268,7 @@ static void php_mysql_fetch_hash(INTERNAL_FUNCTION_PARAMETERS, zend_long result_
 			fcc.object = Z_OBJ_P(return_value);
 
 			if (zend_call_function(&fci, &fcc) == FAILURE) {
-				zend_throw_exception_ex(zend_exception_get_default(), 0, "Could not execute %s::%s()", ce->name->val, ce->constructor->common.function_name->val);
+				zend_throw_exception_ex(zend_exception_get_default(), 0, "Could not execute %s::%s()", ZSTR_VAL(ce->name), ZSTR_VAL(ce->constructor->common.function_name));
 			} else {
 				if (!Z_ISUNDEF(retval)) {
 					zval_ptr_dtor(&retval);
@@ -2278,7 +2278,7 @@ static void php_mysql_fetch_hash(INTERNAL_FUNCTION_PARAMETERS, zend_long result_
 				efree(fci.params);
 			}
 		} else if (ctor_params) {
-			zend_throw_exception_ex(zend_exception_get_default(), 0, "Class %s does not have a constructor hence you cannot use ctor_params", ce->name->val);
+			zend_throw_exception_ex(zend_exception_get_default(), 0, "Class %s does not have a constructor hence you cannot use ctor_params", ZSTR_VAL(ce->name));
 		}
 	}
 

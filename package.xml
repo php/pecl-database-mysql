@@ -127,6 +127,7 @@ version of PHP 7.0.
    <file name="config.m4" role="src" />
    <file name="config.w32" role="src" />
    <file name="CREDITS" role="doc" />
+   <file name="LICENSE" role="doc" />
    <file name="mysql.mak" role="src" />
    <file name="mysql_mysqlnd.h" role="src" />
    <file name="php_mysql.c" role="src" />

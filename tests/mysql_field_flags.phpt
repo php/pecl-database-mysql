@@ -47,6 +47,7 @@ mysql_free_result($res);
 $version = mysql_get_server_info($link);
 if (!preg_match('@(\d+)\.(\d+)\.(\d+)@ism', $version, $matches))
 	printf("[009] Cannot get server version\n");
+$is_maria_db = strpos($version, "MariaDB") !== false;
 $version = ($matches[1] * 1000) + ($matches[2] * 100) + $matches[3];
 
 $tables = array(
@@ -88,7 +89,9 @@ $tables = array(
 								),
 );
 
-if ($version < 5600) {
+if ($is_maria_db) {
+	$tables['label1 TIMESTAMP']['label1'][] = 'unsigned';
+} else if ($version < 5600) {
 	$tables['label1 TIMESTAMP']['label1'][] = 'zerofill';
 	$tables['label1 TIMESTAMP']['label1'][] = 'unsigned';
 }

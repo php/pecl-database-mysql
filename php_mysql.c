@@ -773,7 +773,7 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 		}
 		user = php_get_current_user();
 		hashed_details = zend_string_alloc(sizeof("mysql___") + strlen(user) - 1, 0);
-		snprintf(ZSTR_VAL(hashed_details), ZSTR_LEN(hashed_details), "mysql__%s_", user);
+		snprintf(ZSTR_VAL(hashed_details), ZSTR_LEN(hashed_details) + 1, "mysql__%s_", user);
 		client_flags = CLIENT_INTERACTIVE;
 	} else {
 		/* mysql_pconnect does not support new_link parameter */

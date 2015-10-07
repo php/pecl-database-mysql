@@ -1,139 +1,154 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE package SYSTEM "../pear/package.dtd">
-<package>
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.10.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+http://pear.php.net/dtd/tasks-1.0.xsd
+http://pear.php.net/dtd/package-2.0
+http://pear.php.net/dtd/package-2.0.xsd">
  <name>mysql</name>
+ <channel>pecl.php.net</channel>
  <summary>MySQL database access functions</summary>
- <maintainers>
-  <maintainer>
-   <user>georg</user>
-   <name>Georg Richter</name>
-   <email>georg@php.net</email>
-   <role>lead</role>
-  </maintainer>
-  <maintainer>
-   <user>zak</user>
-   <name>Zak Greant</name>
-   <email>zak@php.net</email>
-   <role>developer</role>
-  </maintainer>
-  <maintainer>
-   <user>zeev</user>
-   <name>Zeev Suraski</name>
-   <email>zeev@php.net</email>
-   <role>developer</role>
-  </maintainer>
- </maintainers>
- <description>
-These functions allow you to access MySQL database servers.
+ <description>These functions allow you to access MySQL database servers.
+ 
  </description>
- <license>PHP</license>
- <release>
-  <state>stable</state>
-  <version>1.0.0</version>
-  <date>2015-03-04</date>
-  <notes>
+ <lead>
+  <name>Georg Richter</name>
+  <user>georg</user>
+  <email>georg@php.net</email>
+  <active>yes</active>
+ </lead>
+ <developer>
+  <name>Zak Greant</name>
+  <user>zak</user>
+  <email>zak@php.net</email>
+  <active>yes</active>
+ </developer>
+ <developer>
+  <name>Zeev Suraski</name>
+  <user>zeev</user>
+  <email>zeev@php.net</email>
+  <active>yes</active>
+ </developer>
+ <date>2015-10-07</date>
+ <time>12:16:00</time>
+ <version>
+  <release>1.0.0</release>
+  <api>1.0.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.php.net/license">PHP</license>
+ <notes>
 This is the original MySQL driver, which has been unbundled from a pre-alpha
 version of PHP 7.0.
-  </notes>
-  <configureoptions>
-    <configureoption name="with-mysql" default="autodetect" prompt="mysql installation dir?"/>
-    <configureoption name="with-mysql-sock" default="autodetect" prompt="MySQL Unix socket?"/>
-    <configureoption name="with-zlib-dir" default="autodetect" prompt="zlib installation dir?"/>
-  </configureoptions>
-  <filelist>
-   <file role="src" name="config.m4"/>
-   <file role="src" name="config.w32"/>
-   <file role="doc" name="CREDITS"/>
-   <file role="doc" name="README.md"/>
-   <file role="src" name="mysql.mak"/>
-   <file role="src" name="mysql_mysqlnd.h"/>
-   <file role="src" name="php_mysql.c"/>
-   <file role="src" name="php_mysql.h"/>
-   <file role="src" name="php_mysql_structs.h"/>
-   <file role="test" name="tests/001.phpt"/>
-   <file role="test" name="tests/002.phpt"/>
-   <file role="test" name="tests/003.phpt"/>
-   <file role="test" name="tests/bug47438.phpt"/>
-   <file role="test" name="tests/bug48754.phpt"/>
-   <file role="test" name="tests/bug51242.phpt"/>
-   <file role="test" name="tests/bug53649.phpt"/>
-   <file role="test" name="tests/bug55473.phpt"/>
-   <file role="test" name="tests/clean_table.inc"/>
-   <file role="test" name="tests/connect.inc"/>
-   <file role="test" name="tests/mysql_affected_rows.phpt"/>
-   <file role="test" name="tests/mysql_client_encoding.phpt"/>
-   <file role="test" name="tests/mysql_close.phpt"/>
-   <file role="test" name="tests/mysql_connect.phpt"/>
-   <file role="test" name="tests/mysql_constants.phpt"/>
-   <file role="test" name="tests/mysql_create_db.phpt"/>
-   <file role="test" name="tests/mysql_data_seek.phpt"/>
-   <file role="test" name="tests/mysql_db_name.phpt"/>
-   <file role="test" name="tests/mysql_db_query.phpt"/>
-   <file role="test" name="tests/mysql_deprecated_api.phpt"/>
-   <file role="test" name="tests/mysql_drop_db.phpt"/>
-   <file role="test" name="tests/mysql_errno.phpt"/>
-   <file role="test" name="tests/mysql_error.phpt"/>
-   <file role="test" name="tests/mysql_escape_string.phpt"/>
-   <file role="test" name="tests/mysql_fetch_array.phpt"/>
-   <file role="test" name="tests/mysql_fetch_assoc.phpt"/>
-   <file role="test" name="tests/mysql_fetch_field.phpt"/>
-   <file role="test" name="tests/mysql_fetch_lengths.phpt"/>
-   <file role="test" name="tests/mysql_fetch_object.phpt"/>
-   <file role="test" name="tests/mysql_fetch_row.phpt"/>
-   <file role="test" name="tests/mysql_field_flags.phpt"/>
-   <file role="test" name="tests/mysql_field_len.phpt"/>
-   <file role="test" name="tests/mysql_field_name.phpt"/>
-   <file role="test" name="tests/mysql_field_seek.phpt"/>
-   <file role="test" name="tests/mysql_field_table.phpt"/>
-   <file role="test" name="tests/mysql_field_type.phpt"/>
-   <file role="test" name="tests/mysql_free_result.phpt"/>
-   <file role="test" name="tests/mysql_get_client_info.phpt"/>
-   <file role="test" name="tests/mysql_get_host_info.phpt"/>
-   <file role="test" name="tests/mysql_get_proto_info.phpt"/>
-   <file role="test" name="tests/mysql_get_server_info.phpt"/>
-   <file role="test" name="tests/mysql_info.phpt"/>
-   <file role="test" name="tests/mysql_insert_id.phpt"/>
-   <file role="test" name="tests/mysql_list_dbs.phpt"/>
-   <file role="test" name="tests/mysql_list_fields.phpt"/>
-   <file role="test" name="tests/mysql_list_processes.phpt"/>
-   <file role="test" name="tests/mysql_list_tables.phpt"/>
-   <file role="test" name="tests/mysql_max_links.phpt"/>
-   <file role="test" name="tests/mysql_max_persistent.phpt"/>
-   <file role="test" name="tests/mysql_mysqlnd_read_timeout_long.phpt"/>
-   <file role="test" name="tests/mysql_num_fields.phpt"/>
-   <file role="test" name="tests/mysql_num_rows.phpt"/>
-   <file role="test" name="tests/mysql_pconn_disable.phpt"/>
-   <file role="test" name="tests/mysql_pconn_kill.phpt"/>
-   <file role="test" name="tests/mysql_pconn_max_links.phpt"/>
-   <file role="test" name="tests/mysql_pconn_reuse.phpt"/>
-   <file role="test" name="tests/mysql_pconnect.phpt"/>
-   <file role="test" name="tests/mysql_phpinfo.phpt"/>
-   <file role="test" name="tests/mysql_ping.phpt"/>
-   <file role="test" name="tests/mysql_query.phpt"/>
-   <file role="test" name="tests/mysql_query_load_data_openbasedir.phpt"/>
-   <file role="test" name="tests/mysql_real_escape_string.phpt"/>
-   <file role="test" name="tests/mysql_reflection_extension.phpt"/>
-   <file role="test" name="tests/mysql_reflection_functions.phpt"/>
-   <file role="test" name="tests/mysql_result.phpt"/>
-   <file role="test" name="tests/mysql_select_db.phpt"/>
-   <file role="test" name="tests/mysql_set_charset.phpt"/>
-   <file role="test" name="tests/mysql_sql_safe_mode.phpt"/>
-   <file role="test" name="tests/mysql_stat.phpt"/>
-   <file role="test" name="tests/mysql_tablename.phpt"/>
-   <file role="test" name="tests/mysql_thread_id.phpt"/>
-   <file role="test" name="tests/mysql_trace_mode.phpt"/>
-   <file role="test" name="tests/mysql_unbuffered_query.phpt"/>
-   <file role="test" name="tests/setupdefault.inc"/>
-   <file role="test" name="tests/skipif.inc"/>
-   <file role="test" name="tests/skipifconnectfailure.inc"/>
-   <file role="test" name="tests/skipifnotmysqlnd.inc"/>
-   <file role="test" name="tests/table.inc"/>
-  </filelist>
-  <deps>
-   <dep type="php" rel="ge" version="7.0.0" />
-  </deps>
- </release>
+ </notes>
+ <contents>
+  <dir name="/">
+   <dir name="tests">
+    <file name="001.phpt" role="test" />
+    <file name="002.phpt" role="test" />
+    <file name="003.phpt" role="test" />
+    <file name="bug47438.phpt" role="test" />
+    <file name="bug48754.phpt" role="test" />
+    <file name="bug51242.phpt" role="test" />
+    <file name="bug53649.phpt" role="test" />
+    <file name="bug55473.phpt" role="test" />
+    <file name="clean_table.inc" role="test" />
+    <file name="connect.inc" role="test" />
+    <file name="mysql_affected_rows.phpt" role="test" />
+    <file name="mysql_client_encoding.phpt" role="test" />
+    <file name="mysql_close.phpt" role="test" />
+    <file name="mysql_connect.phpt" role="test" />
+    <file name="mysql_constants.phpt" role="test" />
+    <file name="mysql_create_db.phpt" role="test" />
+    <file name="mysql_data_seek.phpt" role="test" />
+    <file name="mysql_db_name.phpt" role="test" />
+    <file name="mysql_db_query.phpt" role="test" />
+    <file name="mysql_deprecated_api.phpt" role="test" />
+    <file name="mysql_drop_db.phpt" role="test" />
+    <file name="mysql_errno.phpt" role="test" />
+    <file name="mysql_error.phpt" role="test" />
+    <file name="mysql_escape_string.phpt" role="test" />
+    <file name="mysql_fetch_array.phpt" role="test" />
+    <file name="mysql_fetch_assoc.phpt" role="test" />
+    <file name="mysql_fetch_field.phpt" role="test" />
+    <file name="mysql_fetch_lengths.phpt" role="test" />
+    <file name="mysql_fetch_object.phpt" role="test" />
+    <file name="mysql_fetch_row.phpt" role="test" />
+    <file name="mysql_field_flags.phpt" role="test" />
+    <file name="mysql_field_len.phpt" role="test" />
+    <file name="mysql_field_name.phpt" role="test" />
+    <file name="mysql_field_seek.phpt" role="test" />
+    <file name="mysql_field_table.phpt" role="test" />
+    <file name="mysql_field_type.phpt" role="test" />
+    <file name="mysql_free_result.phpt" role="test" />
+    <file name="mysql_get_client_info.phpt" role="test" />
+    <file name="mysql_get_host_info.phpt" role="test" />
+    <file name="mysql_get_proto_info.phpt" role="test" />
+    <file name="mysql_get_server_info.phpt" role="test" />
+    <file name="mysql_info.phpt" role="test" />
+    <file name="mysql_insert_id.phpt" role="test" />
+    <file name="mysql_list_dbs.phpt" role="test" />
+    <file name="mysql_list_fields.phpt" role="test" />
+    <file name="mysql_list_processes.phpt" role="test" />
+    <file name="mysql_list_tables.phpt" role="test" />
+    <file name="mysql_max_links.phpt" role="test" />
+    <file name="mysql_max_persistent.phpt" role="test" />
+    <file name="mysql_mysqlnd_read_timeout_long.phpt" role="test" />
+    <file name="mysql_num_fields.phpt" role="test" />
+    <file name="mysql_num_rows.phpt" role="test" />
+    <file name="mysql_pconnect.phpt" role="test" />
+    <file name="mysql_pconn_disable.phpt" role="test" />
+    <file name="mysql_pconn_kill.phpt" role="test" />
+    <file name="mysql_pconn_max_links.phpt" role="test" />
+    <file name="mysql_pconn_reuse.phpt" role="test" />
+    <file name="mysql_phpinfo.phpt" role="test" />
+    <file name="mysql_ping.phpt" role="test" />
+    <file name="mysql_query.phpt" role="test" />
+    <file name="mysql_query_load_data_openbasedir.phpt" role="test" />
+    <file name="mysql_real_escape_string.phpt" role="test" />
+    <file name="mysql_reflection_extension.phpt" role="test" />
+    <file name="mysql_reflection_functions.phpt" role="test" />
+    <file name="mysql_result.phpt" role="test" />
+    <file name="mysql_select_db.phpt" role="test" />
+    <file name="mysql_set_charset.phpt" role="test" />
+    <file name="mysql_sql_safe_mode.phpt" role="test" />
+    <file name="mysql_stat.phpt" role="test" />
+    <file name="mysql_tablename.phpt" role="test" />
+    <file name="mysql_thread_id.phpt" role="test" />
+    <file name="mysql_trace_mode.phpt" role="test" />
+    <file name="mysql_unbuffered_query.phpt" role="test" />
+    <file name="setupdefault.inc" role="test" />
+    <file name="skipif.inc" role="test" />
+    <file name="skipifconnectfailure.inc" role="test" />
+    <file name="skipifnotmysqlnd.inc" role="test" />
+    <file name="table.inc" role="test" />
+   </dir> <!-- //tests -->
+   <file name="config.m4" role="src" />
+   <file name="config.w32" role="src" />
+   <file name="CREDITS" role="doc" />
+   <file name="mysql.mak" role="src" />
+   <file name="mysql_mysqlnd.h" role="src" />
+   <file name="php_mysql.c" role="src" />
+   <file name="php_mysql.h" role="src" />
+   <file name="php_mysql_structs.h" role="src" />
+   <file name="README.md" role="doc" />
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>7.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.10.0</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <providesextension>mysql</providesextension>
+ <extsrcrelease>
+  <configureoption default="autodetect" name="with-mysql" prompt="mysql installation dir?" />
+  <configureoption default="autodetect" name="with-mysql-sock" prompt="MySQL Unix socket?" />
+  <configureoption default="autodetect" name="with-zlib-dir" prompt="zlib installation dir?" />
+ </extsrcrelease>
 </package>
-<!--
-vim:et:ts=1:sw=1
--->

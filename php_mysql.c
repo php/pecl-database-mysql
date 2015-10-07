@@ -1908,7 +1908,7 @@ PHP_FUNCTION(mysql_escape_string)
 	ZSTR_LEN(escaped_str) = mysql_escape_string(ZSTR_VAL(escaped_str), str, str_len);
 
 	php_error_docref("function.mysql-real-escape-string", E_DEPRECATED, "This function is deprecated; use mysql_real_escape_string() instead.");
-	RETURN_STR(escaped_str);
+	RETURN_NEW_STR(escaped_str);
 }
 /* }}} */
 
@@ -2561,7 +2561,7 @@ static void php_mysql_field_info(INTERNAL_FUNCTION_PARAMETERS, int entry_type)
 	switch (entry_type) {
 		case PHP_MYSQL_FIELD_NAME:
 #ifdef MYSQL_USE_MYSQLND
-			RETVAL_STR(zend_string_copy(mysql_field->sname));
+			RETVAL_STR_COPY(mysql_field->sname);
 #else
 			RETVAL_STRING(mysql_field->name);
 #endif

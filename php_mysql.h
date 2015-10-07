@@ -24,6 +24,8 @@
 
 #if HAVE_MYSQL
 
+#define PHP_MYSQL_VERSION "1.0.0-dev"
+
 extern zend_module_entry mysql_module_entry;
 #define mysql_module_ptr &mysql_module_entry
 

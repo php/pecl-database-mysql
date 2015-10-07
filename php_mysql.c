@@ -61,6 +61,7 @@
 
 #include "php_ini.h"
 #include "php_mysql_structs.h"
+#include "php_mysql.h"
 
 /* True globals, no need for thread safety */
 static int le_result, le_link, le_plink;
@@ -342,7 +343,7 @@ zend_module_entry mysql_module_entry = {
 	PHP_RINIT(mysql),
 	PHP_RSHUTDOWN(mysql),
 	PHP_MINFO(mysql),
-	"1.0",
+	PHP_MYSQL_VERSION,
 	PHP_MODULE_GLOBALS(mysql),
 	PHP_GINIT(mysql),
 	NULL,

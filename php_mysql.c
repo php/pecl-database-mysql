@@ -1757,10 +1757,14 @@ PHP_FUNCTION(mysql_list_fields)
 
 	PHPMY_UNBUFFERED_QUERY_CHECK();
 
+#if PHP_VERSION_ID < 70100
 	if ((mysql_result=mysql_list_fields(mysql->conn, table, NULL))==NULL) {
+#endif
 		php_error_docref(NULL, E_WARNING, "Unable to save MySQL query result");
 		RETURN_FALSE;
+#if PHP_VERSION_ID < 70100
 	}
+#endif
 	MySG(result_allocated)++;
 	ZVAL_RES(return_value, zend_register_resource(mysql_result, le_result));
 }
@@ -2240,7 +2244,9 @@ static void php_mysql_fetch_hash(INTERNAL_FUNCTION_PARAMETERS, zend_long result_
 			fci.size = sizeof(fci);
 			fci.function_table = &ce->function_table;
 			ZVAL_UNDEF(&fci.function_name);
+#if PHP_VERSION_ID < 70100
 			fci.symbol_table = NULL;
+#endif
 			fci.object = Z_OBJ_P(return_value);
 			fci.retval = &retval;
 			fci.params = NULL;

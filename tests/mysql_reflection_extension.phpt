@@ -39,7 +39,7 @@ require_once('skipif.inc');
 ?>
 --EXPECTF--
 Name: mysql
-Version: 1.0
+Version: 1.0.0-dev
 Functions:
   mysql
   mysql_affected_rows

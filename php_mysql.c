@@ -2242,7 +2242,9 @@ static void php_mysql_fetch_hash(INTERNAL_FUNCTION_PARAMETERS, zend_long result_
 
 		if (ce->constructor) {
 			fci.size = sizeof(fci);
+#if PHP_VERSION_ID < 70100
 			fci.function_table = &ce->function_table;
+#endif
 			ZVAL_UNDEF(&fci.function_name);
 #if PHP_VERSION_ID < 70100
 			fci.symbol_table = NULL;

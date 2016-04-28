@@ -2270,7 +2270,11 @@ static void php_mysql_fetch_hash(INTERNAL_FUNCTION_PARAMETERS, zend_long result_
 
 			fcc.initialized = 1;
 			fcc.function_handler = ce->constructor;
+#if PHP_VERSION_ID < 70100
 			fcc.calling_scope = EG(scope);
+#else
+			fcc.calling_scope = zend_get_executed_scope();
+#endif
 			fcc.called_scope = Z_OBJCE_P(return_value);
 			fcc.object = Z_OBJ_P(return_value);
 

@@ -768,7 +768,11 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 #endif
 	}
 
+#if PHP_API_VERSION < 20160731
 	if (PG(sql_safe_mode)) {
+#else
+	if (0) {
+#endif
 		if (ZEND_NUM_ARGS()>0) {
 			php_error_docref(NULL, E_NOTICE, "SQL safe mode in effect - ignoring host/user/password information");
 		}

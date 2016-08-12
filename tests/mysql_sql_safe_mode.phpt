@@ -4,6 +4,11 @@ mysql_[p]connect() - safe_mode
 <?php
 require_once('skipif.inc');
 require_once('skipifconnectfailure.inc');
+
+if (PHP_VERSION_ID >= 70200) {
+	die("skip Requires PHP 7.1 or earlier");
+}
+
 $link = @mysql_connect("", "", "", true);
 if ($link)
 	die("skip Test cannot be run if annonymous connections are allowed");

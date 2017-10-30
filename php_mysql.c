@@ -63,6 +63,11 @@
 #include "php_mysql_structs.h"
 #include "php_mysql.h"
 
+/* PHP 7.3 compatibility macro */
+#ifndef GC_ADDREF
+# define GC_ADDREF(ref) ++GC_REFCOUNT(ref)
+#endif
+
 /* True globals, no need for thread safety */
 static int le_result, le_link, le_plink;
 
@@ -427,7 +432,7 @@ static void php_mysql_set_default_link(zend_resource *link)
 	if (MySG(default_link) != NULL) {
 		zend_list_delete(MySG(default_link));
 	}
-	++GC_REFCOUNT(link);
+	GC_ADDREF(link);
 	MySG(default_link) = link;
 }
 /* }}} */
@@ -988,7 +993,7 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 
 			link = (zend_resource *)index_ptr->ptr;
 			if (link && (link->type == le_link || link->type == le_plink)) {
-				GC_REFCOUNT(link)++;
+				GC_ADDREF(link);
 				ZVAL_RES(return_value, link);
 				php_mysql_set_default_link(link);
 				zend_string_release(hashed_details);

@@ -863,11 +863,15 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 
 	if (persistent) {
 		zend_resource *le;
+#if PHP_VERSION_ID < 70300
 		zend_string *phashed;
+#endif
 
 		/* try to find if we already have this link in our persistent list */
 		if ((le = zend_hash_find_ptr(&EG(persistent_list), hashed_details)) == NULL) { /* we don't */
+#if PHP_VERSION_ID < 70300
 			zval new_le;
+#endif
 
 			if (MySG(max_links) != -1 && MySG(num_links) >= MySG(max_links)) {
 				php_error_docref(NULL, E_WARNING, "Too many open links (%pd)", MySG(num_links));
@@ -924,6 +928,7 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 			}
 			mysql_options(mysql->conn, MYSQL_OPT_LOCAL_INFILE, (char *)&MySG(allow_local_infile));
 
+#if PHP_VERSION_ID < 70300
 			/* hash it up */
 			ZVAL_NEW_PERSISTENT_RES(&new_le, -1, mysql, le_plink);
 
@@ -931,11 +936,16 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 			phashed = zend_string_init(ZSTR_VAL(hashed_details), ZSTR_LEN(hashed_details), 1);
 			if (zend_hash_update(&EG(persistent_list), phashed, &new_le) == NULL) {
 				zend_string_release(phashed);
+#else
+			if (zend_register_persistent_resource(ZSTR_VAL(hashed_details), ZSTR_LEN(hashed_details), mysql, le_plink) == NULL) {
+#endif
 				free(mysql);
 				zend_string_release(hashed_details);
 				MYSQL_DO_CONNECT_RETURN_FALSE();
 			}
+#if PHP_VERSION_ID < 70300
 			zend_string_release(phashed);
+#endif
 			MySG(num_persistent)++;
 			MySG(num_links)++;
 		} else {  /* The link is in our list of persistent connections */

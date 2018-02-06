@@ -1756,6 +1756,10 @@ PHP_FUNCTION(mysql_list_fields)
 	php_mysql_conn *mysql;
 	MYSQL_RES *mysql_result;
 
+#if PHP_VERSION_ID > 70000
+        php_error_docref(NULL, E_ERROR, "mysql_list_fields() was removed from mysqlnd and can no longer be used!");
+#endif
+	
 	if (zend_parse_parameters(ZEND_NUM_ARGS(), "ss|r", &db, &db_len, &table, &table_len, &mysql_link) == FAILURE) {
 		return;
 	}

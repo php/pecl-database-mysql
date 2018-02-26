@@ -84,20 +84,20 @@ require_once("clean_table.inc");
 --EXPECTF--
 Deprecated: mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in %s on line %d
 object(stdClass)#%d (2) {
-  [%u|b%"ID"]=>
-  %unicode|string%(1) "1"
-  [%u|b%"label"]=>
-  %unicode|string%(1) "a"
+  ["ID"]=>
+  string(1) "1"
+  ["label"]=>
+  string(1) "a"
 }
 object(mysql_fetch_object_test)#%d (4) {
-  [%u|b%"a"]=>
+  ["a"]=>
   NULL
-  [%u|b%"b"]=>
+  ["b"]=>
   NULL
-  [%u|b%"ID"]=>
-  %unicode|string%(1) "2"
-  [%u|b%"label"]=>
-  %unicode|string%(1) "b"
+  ["ID"]=>
+  string(1) "2"
+  ["label"]=>
+  string(1) "b"
 }
 
 Warning: Missing argument 1 for mysql_fetch_object_construct::__construct() in %s on line %d
@@ -108,38 +108,38 @@ Notice: Undefined variable: a in %s on line %d
 
 Notice: Undefined variable: b in %s on line %d
 object(mysql_fetch_object_construct)#%d (4) {
-  [%u|b%"a"]=>
+  ["a"]=>
   NULL
-  [%u|b%"b"]=>
+  ["b"]=>
   NULL
-  [%u|b%"ID"]=>
-  %unicode|string%(1) "3"
-  [%u|b%"label"]=>
-  %unicode|string%(1) "c"
+  ["ID"]=>
+  string(1) "3"
+  ["label"]=>
+  string(1) "c"
 }
 
 Warning: Missing argument 2 for mysql_fetch_object_construct::__construct() in %s on line %d
 
 Notice: Undefined variable: b in %s on line %d
 object(mysql_fetch_object_construct)#%d (4) {
-  [%u|b%"a"]=>
-  %unicode|string%(1) "a"
-  [%u|b%"b"]=>
+  ["a"]=>
+  string(1) "a"
+  ["b"]=>
   NULL
-  [%u|b%"ID"]=>
-  %unicode|string%(1) "4"
-  [%u|b%"label"]=>
-  %unicode|string%(1) "d"
+  ["ID"]=>
+  string(1) "4"
+  ["label"]=>
+  string(1) "d"
 }
 object(mysql_fetch_object_construct)#%d (4) {
-  [%u|b%"a"]=>
-  %unicode|string%(1) "a"
-  [%u|b%"b"]=>
-  %unicode|string%(1) "b"
-  [%u|b%"ID"]=>
-  %unicode|string%(1) "5"
-  [%u|b%"label"]=>
-  %unicode|string%(1) "e"
+  ["a"]=>
+  string(1) "a"
+  ["b"]=>
+  string(1) "b"
+  ["ID"]=>
+  string(1) "5"
+  ["label"]=>
+  string(1) "e"
 }
 bool(false)
 bool(false)

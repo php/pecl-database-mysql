@@ -195,17 +195,17 @@ Deprecated: mysql_connect(): The mysql extension is deprecated and will be remov
 
 Deprecated: mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in %s on line %d
 array(2) {
-  [%u|b%"id"]=>
-  %unicode|string%(1) "1"
-  [%u|b%"label"]=>
-  %unicode|string%(1) "a"
+  ["id"]=>
+  string(1) "1"
+  ["label"]=>
+  string(1) "a"
 }
 
 Deprecated: mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in %s on line %d
 array(2) {
-  [%u|b%"id"]=>
-  %unicode|string%(1) "1"
-  [%u|b%"label"]=>
-  %unicode|string%(1) "a"
+  ["id"]=>
+  string(1) "1"
+  ["label"]=>
+  string(1) "a"
 }
 done!

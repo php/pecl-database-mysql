@@ -44,19 +44,19 @@ bool(true)
 bool(true)
 resource(%d) of type (mysql result)
 array(3) {
-  [%u|b%"col1"]=>
-  %unicode|string%(1) "1"
-  [%u|b%"col2"]=>
-  %unicode|string%(3) "foo"
-  [%u|b%"col3"]=>
-  %unicode|string%(3) "bar"
+  ["col1"]=>
+  string(1) "1"
+  ["col2"]=>
+  string(3) "foo"
+  ["col3"]=>
+  string(3) "bar"
 }
 array(3) {
-  [%u|b%"col1"]=>
-  %unicode|string%(1) "2"
-  [%u|b%"col2"]=>
-  %unicode|string%(3) "foo"
-  [%u|b%"col3"]=>
-  %unicode|string%(3) "bar"
+  ["col1"]=>
+  string(1) "2"
+  ["col2"]=>
+  string(3) "foo"
+  ["col3"]=>
+  string(3) "bar"
 }
 done!

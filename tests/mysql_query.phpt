@@ -119,14 +119,14 @@ mysql_close($link);
 --EXPECTF--
 Deprecated: mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in %s on line %d
 array(1) {
-  [%u|b%"valid"]=>
-  %unicode|string%(30) "this is sql but with semicolon"
+  ["valid"]=>
+  string(30) "this is sql but with semicolon"
 }
 array(1) {
-  [%u|b%""]=>
-  %unicode|string%(1) "a"
+  [""]=>
+  string(1) "a"
 }
-%unicode|string%(1) "a"
+string(1) "a"
 
 Warning: mysql_query(): supplied resource is not a valid MySQL-Link resource in %s on line %d
 done!

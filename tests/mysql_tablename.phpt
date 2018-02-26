@@ -47,7 +47,7 @@ Deprecated: mysql_connect(): The mysql extension is deprecated and will be remov
 Warning: mysql_tablename() expects at least 2 parameters, 1 given in %s on line %d
 
 Warning: mysql_tablename(): Unable to jump to row -1 on MySQL result index %d in %s on line %d
-%unicode|string%(1) "1"
+string(1) "1"
 
 Warning: mysql_tablename(): Unable to jump to row 2 on MySQL result index %d in %s on line %d
 

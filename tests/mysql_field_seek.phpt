@@ -49,89 +49,89 @@ Deprecated: mysql_connect(): The mysql extension is deprecated and will be remov
 Warning: mysql_field_seek(): Field -1 is invalid for MySQL result index %d in %s on line %d
 bool(false)
 object(stdClass)#%d (13) {
-  [%u|b%"name"]=>
-  %unicode|string%(2) "id"
-  [%u|b%"table"]=>
-  %unicode|string%(4) "test"
-  [%u|b%"def"]=>
-  %unicode|string%(0) ""
-  [%u|b%"max_length"]=>
+  ["name"]=>
+  string(2) "id"
+  ["table"]=>
+  string(4) "test"
+  ["def"]=>
+  string(0) ""
+  ["max_length"]=>
   int(1)
-  [%u|b%"not_null"]=>
+  ["not_null"]=>
   int(1)
-  [%u|b%"primary_key"]=>
+  ["primary_key"]=>
   int(1)
-  [%u|b%"multiple_key"]=>
+  ["multiple_key"]=>
   int(0)
-  [%u|b%"unique_key"]=>
+  ["unique_key"]=>
   int(0)
-  [%u|b%"numeric"]=>
+  ["numeric"]=>
   int(1)
-  [%u|b%"blob"]=>
+  ["blob"]=>
   int(0)
-  [%u|b%"type"]=>
-  %unicode|string%(3) "int"
-  [%u|b%"unsigned"]=>
+  ["type"]=>
+  string(3) "int"
+  ["unsigned"]=>
   int(0)
-  [%u|b%"zerofill"]=>
+  ["zerofill"]=>
   int(0)
 }
 bool(true)
 object(stdClass)#%d (13) {
-  [%u|b%"name"]=>
-  %unicode|string%(2) "id"
-  [%u|b%"table"]=>
-  %unicode|string%(4) "test"
-  [%u|b%"def"]=>
-  %unicode|string%(0) ""
-  [%u|b%"max_length"]=>
+  ["name"]=>
+  string(2) "id"
+  ["table"]=>
+  string(4) "test"
+  ["def"]=>
+  string(0) ""
+  ["max_length"]=>
   int(1)
-  [%u|b%"not_null"]=>
+  ["not_null"]=>
   int(1)
-  [%u|b%"primary_key"]=>
+  ["primary_key"]=>
   int(1)
-  [%u|b%"multiple_key"]=>
+  ["multiple_key"]=>
   int(0)
-  [%u|b%"unique_key"]=>
+  ["unique_key"]=>
   int(0)
-  [%u|b%"numeric"]=>
+  ["numeric"]=>
   int(1)
-  [%u|b%"blob"]=>
+  ["blob"]=>
   int(0)
-  [%u|b%"type"]=>
-  %unicode|string%(3) "int"
-  [%u|b%"unsigned"]=>
+  ["type"]=>
+  string(3) "int"
+  ["unsigned"]=>
   int(0)
-  [%u|b%"zerofill"]=>
+  ["zerofill"]=>
   int(0)
 }
 bool(true)
 object(stdClass)#%d (13) {
-  [%u|b%"name"]=>
-  %unicode|string%(5) "label"
-  [%u|b%"table"]=>
-  %unicode|string%(4) "test"
-  [%u|b%"def"]=>
-  %unicode|string%(0) ""
-  [%u|b%"max_length"]=>
+  ["name"]=>
+  string(5) "label"
+  ["table"]=>
+  string(4) "test"
+  ["def"]=>
+  string(0) ""
+  ["max_length"]=>
   int(1)
-  [%u|b%"not_null"]=>
+  ["not_null"]=>
   int(0)
-  [%u|b%"primary_key"]=>
+  ["primary_key"]=>
   int(0)
-  [%u|b%"multiple_key"]=>
+  ["multiple_key"]=>
   int(0)
-  [%u|b%"unique_key"]=>
+  ["unique_key"]=>
   int(0)
-  [%u|b%"numeric"]=>
+  ["numeric"]=>
   int(0)
-  [%u|b%"blob"]=>
+  ["blob"]=>
   int(0)
-  [%u|b%"type"]=>
-  %unicode|string%(6) "string"
-  [%u|b%"unsigned"]=>
+  ["type"]=>
+  string(6) "string"
+  ["unsigned"]=>
   int(0)
-  [%u|b%"zerofill"]=>
+  ["zerofill"]=>
   int(0)
 }
 

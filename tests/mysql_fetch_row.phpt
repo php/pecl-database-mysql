@@ -45,9 +45,9 @@ Deprecated: mysql_connect(): The mysql extension is deprecated and will be remov
 [004]
 array(2) {
   [0]=>
-  %unicode|string%(1) "1"
+  string(1) "1"
   [1]=>
-  %unicode|string%(1) "a"
+  string(1) "a"
 }
 [005]
 bool(false)

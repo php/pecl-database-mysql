@@ -51,7 +51,7 @@ Deprecated: mysql_connect(): The mysql extension is deprecated and will be remov
 Warning: mysql_field_name() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: mysql_field_name(): Field -1 is invalid for MySQL result index %d in %s on line %d
-%unicode|string%(2) "id"
+string(2) "id"
 
 Warning: mysql_field_name(): Field 2 is invalid for MySQL result index %d in %s on line %d
 

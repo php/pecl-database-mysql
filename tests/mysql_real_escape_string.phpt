@@ -34,11 +34,11 @@ print "done!";
 ?>
 --EXPECTF--
 Deprecated: mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in %s on line %d
-%unicode|string%(31) "Am I a unicode string in PHP 6?"
-%unicode|string%(2) "\\"
-%unicode|string%(2) "\""
-%unicode|string%(2) "\'"
-%unicode|string%(2) "\n"
-%unicode|string%(2) "\r"
-%unicode|string%(8) "foo\0bar"
+string(31) "Am I a unicode string in PHP 6?"
+string(2) "\\"
+string(2) "\""
+string(2) "\'"
+string(2) "\n"
+string(2) "\r"
+string(8) "foo\0bar"
 done!

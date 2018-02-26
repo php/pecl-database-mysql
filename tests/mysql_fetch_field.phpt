@@ -158,59 +158,59 @@ require_once("clean_table.inc");
 --EXPECTF--
 Deprecated: mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in %s on line %d
 object(stdClass)#%d (13) {
-  [%u|b%"name"]=>
-  %unicode|string%(2) "ID"
-  [%u|b%"table"]=>
-  %unicode|string%(4) "TEST"
-  [%u|b%"def"]=>
-  %unicode|string%(0) ""
-  [%u|b%"max_length"]=>
+  ["name"]=>
+  string(2) "ID"
+  ["table"]=>
+  string(4) "TEST"
+  ["def"]=>
+  string(0) ""
+  ["max_length"]=>
   int(1)
-  [%u|b%"not_null"]=>
+  ["not_null"]=>
   int(1)
-  [%u|b%"primary_key"]=>
+  ["primary_key"]=>
   int(1)
-  [%u|b%"multiple_key"]=>
+  ["multiple_key"]=>
   int(0)
-  [%u|b%"unique_key"]=>
+  ["unique_key"]=>
   int(0)
-  [%u|b%"numeric"]=>
+  ["numeric"]=>
   int(1)
-  [%u|b%"blob"]=>
+  ["blob"]=>
   int(0)
-  [%u|b%"type"]=>
-  %unicode|string%(3) "int"
-  [%u|b%"unsigned"]=>
+  ["type"]=>
+  string(3) "int"
+  ["unsigned"]=>
   int(0)
-  [%u|b%"zerofill"]=>
+  ["zerofill"]=>
   int(0)
 }
 object(stdClass)#%d (13) {
-  [%u|b%"name"]=>
-  %unicode|string%(5) "label"
-  [%u|b%"table"]=>
-  %unicode|string%(4) "TEST"
-  [%u|b%"def"]=>
-  %unicode|string%(0) ""
-  [%u|b%"max_length"]=>
+  ["name"]=>
+  string(5) "label"
+  ["table"]=>
+  string(4) "TEST"
+  ["def"]=>
+  string(0) ""
+  ["max_length"]=>
   int(1)
-  [%u|b%"not_null"]=>
+  ["not_null"]=>
   int(0)
-  [%u|b%"primary_key"]=>
+  ["primary_key"]=>
   int(0)
-  [%u|b%"multiple_key"]=>
+  ["multiple_key"]=>
   int(0)
-  [%u|b%"unique_key"]=>
+  ["unique_key"]=>
   int(0)
-  [%u|b%"numeric"]=>
+  ["numeric"]=>
   int(0)
-  [%u|b%"blob"]=>
+  ["blob"]=>
   int(0)
-  [%u|b%"type"]=>
-  %unicode|string%(6) "string"
-  [%u|b%"unsigned"]=>
+  ["type"]=>
+  string(6) "string"
+  ["unsigned"]=>
   int(0)
-  [%u|b%"zerofill"]=>
+  ["zerofill"]=>
   int(0)
 }
 bool(false)
@@ -219,60 +219,60 @@ Warning: mysql_fetch_field(): Bad field offset in %s on line %d
 
 Warning: mysql_fetch_field(): supplied resource is not a valid MySQL result resource in %s on line %d
 object(stdClass)#%d (13) {
-  [%u|b%"name"]=>
-  %unicode|string%(2) "id"
-  [%u|b%"table"]=>
-  %unicode|string%(4) "test"
-  [%u|b%"def"]=>
-  %unicode|string%(0) ""
-  [%u|b%"max_length"]=>
+  ["name"]=>
+  string(2) "id"
+  ["table"]=>
+  string(4) "test"
+  ["def"]=>
+  string(0) ""
+  ["max_length"]=>
   int(1)
-  [%u|b%"not_null"]=>
+  ["not_null"]=>
   int(0)
-  [%u|b%"primary_key"]=>
+  ["primary_key"]=>
   int(0)
-  [%u|b%"multiple_key"]=>
+  ["multiple_key"]=>
   int(0)
-  [%u|b%"unique_key"]=>
+  ["unique_key"]=>
   int(0)
-  [%u|b%"numeric"]=>
+  ["numeric"]=>
   int(1)
-  [%u|b%"blob"]=>
+  ["blob"]=>
   int(0)
-  [%u|b%"type"]=>
-  %unicode|string%(3) "int"
-  [%u|b%"unsigned"]=>
+  ["type"]=>
+  string(3) "int"
+  ["unsigned"]=>
   int(0)
-  [%u|b%"zerofill"]=>
+  ["zerofill"]=>
   int(0)
 }
 Fetch field from mysql_list_fields result set.
 object(stdClass)#%d (13) {
-  [%u|b%"name"]=>
-  %unicode|string%(2) "id"
-  [%u|b%"table"]=>
-  %unicode|string%(4) "test"
-  [%u|b%"def"]=>
-  %unicode|string%(1) "1"
-  [%u|b%"max_length"]=>
+  ["name"]=>
+  string(2) "id"
+  ["table"]=>
+  string(4) "test"
+  ["def"]=>
+  string(1) "1"
+  ["max_length"]=>
   int(0)
-  [%u|b%"not_null"]=>
+  ["not_null"]=>
   int(0)
-  [%u|b%"primary_key"]=>
+  ["primary_key"]=>
   int(0)
-  [%u|b%"multiple_key"]=>
+  ["multiple_key"]=>
   int(0)
-  [%u|b%"unique_key"]=>
+  ["unique_key"]=>
   int(0)
-  [%u|b%"numeric"]=>
+  ["numeric"]=>
   int(1)
-  [%u|b%"blob"]=>
+  ["blob"]=>
   int(0)
-  [%u|b%"type"]=>
-  %unicode|string%(3) "int"
-  [%u|b%"unsigned"]=>
+  ["type"]=>
+  string(3) "int"
+  ["unsigned"]=>
   int(0)
-  [%u|b%"zerofill"]=>
+  ["zerofill"]=>
   int(0)
 }
 done!

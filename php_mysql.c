@@ -2384,7 +2384,7 @@ PHP_FUNCTION(mysql_fetch_lengths)
 {
 	zval *result;
 	MYSQL_RES *mysql_result;
-	mysql_row_length_type *lengths;
+	const mysql_row_length_type *lengths;
 	int num_fields;
 	int i;
 

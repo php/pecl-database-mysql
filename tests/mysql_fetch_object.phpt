@@ -39,7 +39,7 @@ var_dump(mysql_fetch_object($res, 'mysql_fetch_object_test'));
 
 class mysql_fetch_object_construct extends mysql_fetch_object_test {
 
-	public function __construct($a, $b) {
+	public function __construct($a = null, $b = null) {
 		$this->a = $a;
 		$this->b = $b;
 	}
@@ -99,14 +99,6 @@ object(mysql_fetch_object_test)#%d (4) {
   ["label"]=>
   string(1) "b"
 }
-
-Warning: Missing argument 1 for mysql_fetch_object_construct::__construct() in %s on line %d
-
-Warning: Missing argument 2 for mysql_fetch_object_construct::__construct() in %s on line %d
-
-Notice: Undefined variable: a in %s on line %d
-
-Notice: Undefined variable: b in %s on line %d
 object(mysql_fetch_object_construct)#%d (4) {
   ["a"]=>
   NULL
@@ -117,10 +109,6 @@ object(mysql_fetch_object_construct)#%d (4) {
   ["label"]=>
   string(1) "c"
 }
-
-Warning: Missing argument 2 for mysql_fetch_object_construct::__construct() in %s on line %d
-
-Notice: Undefined variable: b in %s on line %d
 object(mysql_fetch_object_construct)#%d (4) {
   ["a"]=>
   string(1) "a"

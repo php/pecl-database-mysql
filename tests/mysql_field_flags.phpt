@@ -109,7 +109,7 @@ foreach ($tables as $columns => $expected) {
 	}
 
 	reset($expected);
-	list($k, $values) = each($expected);
+    $values = array_shift($expected);
 	$sql = sprintf("INSERT INTO test(id, %s) VALUES (1, %s)", $values[0], $values[1]);
 	if (!mysql_query($sql, $link)) {
 		printf("[011/%s] '%s', [%d] %s\n", $columns, $sql, mysql_errno($link), mysql_error($link));
@@ -122,7 +122,7 @@ foreach ($tables as $columns => $expected) {
 	}
 
 	$i = 1;
-	while (list($field, $flags) = each($expected)) {
+    foreach ($expected as $field => $flags) {
 		$tmp = mysql_field_flags($res, $i++);
 
 		foreach ($flags as $k => $flag) {

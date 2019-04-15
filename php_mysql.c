@@ -666,7 +666,7 @@ PHP_RSHUTDOWN_FUNCTION(mysql)
 
 	if (MySG(trace_mode)) {
 		if (MySG(result_allocated)){
-			php_error_docref("function.mysql-free-result", E_WARNING, "%pu result set(s) not freed. Use mysql_free_result to free result sets which were requested using mysql_query()", MySG(result_allocated));
+			php_error_docref("function.mysql-free-result", E_WARNING, ZEND_LONG_FMT " result set(s) not freed. Use mysql_free_result to free result sets which were requested using mysql_query()", MySG(result_allocated));
 		}
 	}
 
@@ -874,13 +874,13 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 #endif
 
 			if (MySG(max_links) != -1 && MySG(num_links) >= MySG(max_links)) {
-				php_error_docref(NULL, E_WARNING, "Too many open links (%pd)", MySG(num_links));
+				php_error_docref(NULL, E_WARNING, "Too many open links (" ZEND_LONG_FMT ")", MySG(num_links));
 				zend_string_release(hashed_details);
 				MYSQL_DO_CONNECT_RETURN_FALSE();
 			}
 
 			if (MySG(max_persistent) != -1 && MySG(num_persistent) >= MySG(max_persistent)) {
-				php_error_docref(NULL, E_WARNING, "Too many open persistent links (%pd)", MySG(num_persistent));
+				php_error_docref(NULL, E_WARNING, "Too many open persistent links (" ZEND_LONG_FMT ")", MySG(num_persistent));
 				zend_string_release(hashed_details);
 				MYSQL_DO_CONNECT_RETURN_FALSE();
 			}
@@ -1015,7 +1015,7 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 		}
 
 		if (MySG(max_links) != -1 && MySG(num_links) >= MySG(max_links)) {
-			php_error_docref(NULL, E_WARNING, "Too many open links (%pd)", MySG(num_links));
+			php_error_docref(NULL, E_WARNING, "Too many open links (" ZEND_LONG_FMT ")", MySG(num_links));
 			zend_string_release(hashed_details);
 			MYSQL_DO_CONNECT_RETURN_FALSE();
 		}
@@ -2024,7 +2024,7 @@ Q: String or long first?
 	}
 
 	if (row < 0 || row >= (int)mysql_num_rows(mysql_result)) {
-		php_error_docref(NULL, E_WARNING, "Unable to jump to row %pd on MySQL result index %d", row, Z_RES_P(result)->handle);
+		php_error_docref(NULL, E_WARNING, "Unable to jump to row " ZEND_LONG_FMT " on MySQL result index %d", row, Z_RES_P(result)->handle);
 		RETURN_FALSE;
 	}
 	mysql_data_seek(mysql_result, row);
@@ -2370,7 +2370,7 @@ PHP_FUNCTION(mysql_data_seek)
 	}
 
 	if (offset < 0 || offset >= (int)mysql_num_rows(mysql_result)) {
-		php_error_docref(NULL, E_WARNING, "Offset %pd is invalid for MySQL result index %d (or the query data is unbuffered)", offset, Z_RES_P(result)->handle);
+		php_error_docref(NULL, E_WARNING, "Offset " ZEND_LONG_FMT " is invalid for MySQL result index %d (or the query data is unbuffered)", offset, Z_RES_P(result)->handle);
 		RETURN_FALSE;
 	}
 	mysql_data_seek(mysql_result, offset);
@@ -2550,7 +2550,7 @@ PHP_FUNCTION(mysql_field_seek)
 	}
 
 	if (offset < 0 || offset >= (int)mysql_num_fields(mysql_result)) {
-		php_error_docref(NULL, E_WARNING, "Field %pd is invalid for MySQL result index %d", offset, Z_RES_P(result)->handle);
+		php_error_docref(NULL, E_WARNING, "Field " ZEND_LONG_FMT " is invalid for MySQL result index %d", offset, Z_RES_P(result)->handle);
 		RETURN_FALSE;
 	}
 	mysql_field_seek(mysql_result, offset);
@@ -2584,7 +2584,7 @@ static void php_mysql_field_info(INTERNAL_FUNCTION_PARAMETERS, int entry_type)
 	}
 
 	if (field < 0 || field >= (int)mysql_num_fields(mysql_result)) {
-		php_error_docref(NULL, E_WARNING, "Field %pd is invalid for MySQL result index %d", field, Z_RES_P(result)->handle);
+		php_error_docref(NULL, E_WARNING, "Field " ZEND_LONG_FMT " is invalid for MySQL result index %d", field, Z_RES_P(result)->handle);
 		RETURN_FALSE;
 	}
 	mysql_field_seek(mysql_result, field);

@@ -46,9 +46,7 @@
 # include <sys/socket.h>
 # define signal(a, b) NULL
 #else
-# if HAVE_SIGNAL_H
-#  include <signal.h>
-# endif
+# include <signal.h>
 # if HAVE_SYS_TYPES_H
 #  include <sys/types.h>
 # endif

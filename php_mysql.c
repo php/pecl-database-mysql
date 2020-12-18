@@ -899,6 +899,8 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 
 #ifndef MYSQL_USE_MYSQLND
 			mysql->conn = mysql_init(NULL);
+#elif PHP_VERSION_ID >= 80100
+			mysql->conn = mysqlnd_init(MYSQLND_CLIENT_NO_FLAG, persistent);
 #else
 			mysql->conn = mysqlnd_init(MYSQLND_CLIENT_KNOWS_RSET_COPY_DATA, persistent);
 #endif
@@ -908,6 +910,8 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 			}
 #ifndef MYSQL_USE_MYSQLND
 			if (mysql_real_connect(mysql->conn, host, user, passwd, NULL, port, socket, client_flags)==NULL)
+#elif PHP_VERSION_ID >= 80100
+			if (mysqlnd_connect(mysql->conn, host, user, passwd, passwd_len, NULL, 0, port, socket, client_flags, MYSQLND_CLIENT_NO_FLAG) == NULL)
 #else
 			if (mysqlnd_connect(mysql->conn, host, user, passwd, passwd_len, NULL, 0, port, socket, client_flags, MYSQLND_CLIENT_KNOWS_RSET_COPY_DATA) == NULL)
 #endif
@@ -967,6 +971,8 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 				if (mysql_errno(mysql->conn) == 2006) {
 #ifndef MYSQL_USE_MYSQLND
 					if (mysql_real_connect(mysql->conn, host, user, passwd, NULL, port, socket, client_flags)==NULL)
+#elif PHP_VERSION_ID >= 80100
+					if (mysqlnd_connect(mysql->conn, host, user, passwd, passwd_len, NULL, 0, port, socket, client_flags, MYSQLND_CLIENT_NO_FLAG) == NULL)
 #else
 					if (mysqlnd_connect(mysql->conn, host, user, passwd, passwd_len, NULL, 0, port, socket, client_flags, MYSQLND_CLIENT_KNOWS_RSET_COPY_DATA) == NULL)
 #endif
@@ -1028,6 +1034,8 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 
 #ifndef MYSQL_USE_MYSQLND
 		mysql->conn = mysql_init(NULL);
+#elif PHP_VERSION_ID >= 80100
+		mysql->conn = mysqlnd_init(MYSQLND_CLIENT_NO_FLAG, persistent);
 #else
 		mysql->conn = mysqlnd_init(MYSQLND_CLIENT_KNOWS_RSET_COPY_DATA, persistent);
 #endif
@@ -1045,6 +1053,8 @@ static void php_mysql_do_connect(INTERNAL_FUNCTION_PARAMETERS, int persistent)
 
 #ifndef MYSQL_USE_MYSQLND
 		if (mysql_real_connect(mysql->conn, host, user, passwd, NULL, port, socket, client_flags)==NULL)
+#elif PHP_VERSION_ID >= 80100
+		if (mysqlnd_connect(mysql->conn, host, user, passwd, passwd_len, NULL, 0, port, socket, client_flags, MYSQLND_CLIENT_NO_FLAG) == NULL)
 #else
 		if (mysqlnd_connect(mysql->conn, host, user, passwd, passwd_len, NULL, 0, port, socket, client_flags, MYSQLND_CLIENT_KNOWS_RSET_COPY_DATA) == NULL)
 #endif
@@ -2089,6 +2099,17 @@ Q: String or long first?
 	} else {
 		RETURN_NULL();
 	}
+#elif PHP_VERSION_ID >= 80100
+	zval *row_zvals;
+	zend_bool fetched_anything;
+	if (mysqlnd_fetch_row_zval(mysql_result, &row_zvals, &fetched_anything) == PASS && fetched_anything) {
+		RETVAL_COPY(&row_zvals[field_offset]);
+		for (unsigned i = 0, n = mysql_num_fields(mysql_result); i < n; i++) {
+			zval_ptr_dtor_nogc(&row_zvals[i]);
+		}
+	} else {
+		RETURN_NULL();
+	}
 #else
 	mysqlnd_result_fetch_field_data(mysql_result, field_offset, return_value);
 #endif
@@ -2239,6 +2260,12 @@ static void php_mysql_fetch_hash(INTERNAL_FUNCTION_PARAMETERS, zend_long result_
 			}
 		}
 	}
+#elif PHP_VERSION_ID >= 80100
+	mysqlnd_fetch_into(mysql_result, ((result_type & MYSQL_NUM)? MYSQLND_FETCH_NUM:0) | ((result_type & MYSQL_ASSOC)? MYSQLND_FETCH_ASSOC:0), return_value);
+	/* mysqlnd distinguishes error and no more result. ext/mysql uses false for both. */
+	if (Z_TYPE_P(return_value) == IS_NULL) {
+		ZVAL_FALSE(return_value);
+	}
 #else
 	mysqlnd_fetch_into(mysql_result, ((result_type & MYSQL_NUM)? MYSQLND_FETCH_NUM:0) | ((result_type & MYSQL_ASSOC)? MYSQLND_FETCH_ASSOC:0), return_value, MYSQLND_MYSQL);
 #endif
@@ -2274,6 +2301,8 @@ static void php_mysql_fetch_hash(INTERNAL_FUNCTION_PARAMETERS, zend_long result_
 			fci.param_count = 0;
 #if PHP_VERSION_ID < 80000
 			fci.no_separation = 1;
+#else
+			fci.named_params = NULL;
 #endif
 
 			if (ctor_params && Z_TYPE_P(ctor_params) != IS_NULL) {
@@ -2522,7 +2551,11 @@ PHP_FUNCTION(mysql_fetch_field)
 #endif
 	add_property_stringl(return_value, "table", (mysql_field->table?mysql_field->table:""), mysql_field->table_length);
 	add_property_stringl(return_value, "def", (mysql_field->def?mysql_field->def:""), mysql_field->def_length);
+#if PHP_VERSION_ID >= 80100
+	add_property_long(return_value, "max_length", 0);
+#else
 	add_property_long(return_value, "max_length", mysql_field->max_length);
+#endif
 	add_property_long(return_value, "not_null", IS_NOT_NULL(mysql_field->flags)?1:0);
 	add_property_long(return_value, "primary_key", IS_PRI_KEY(mysql_field->flags)?1:0);
 	add_property_long(return_value, "multiple_key", (mysql_field->flags&MULTIPLE_KEY_FLAG?1:0));
